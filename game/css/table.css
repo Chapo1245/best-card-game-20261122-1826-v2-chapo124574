@@ -1,0 +1,163 @@
+/* table.css — the night-harbor table: deep navy, gold lamps, three tides. */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: #070b1d;
+  color: #f2ead8;
+  font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif;
+  overflow: hidden;
+}
+#app {
+  width: 1280px; height: 720px; margin: 0 auto;
+  background:
+    radial-gradient(ellipse 900px 300px at 50% -60px, rgba(245, 197, 66, 0.22), transparent 70%),
+    radial-gradient(ellipse 700px 260px at 15% 110%, rgba(46, 196, 182, 0.14), transparent 70%),
+    radial-gradient(ellipse 700px 260px at 85% 110%, rgba(155, 93, 229, 0.16), transparent 70%),
+    linear-gradient(180deg, #0b1026 0%, #0d1533 55%, #0a0f24 100%);
+  display: flex; flex-direction: column; padding: 10px 18px 8px;
+  position: relative;
+}
+/* ---- top bar ---- */
+#topbar { display: flex; align-items: center; justify-content: space-between; height: 44px; }
+.brand { font-size: 24px; font-weight: 900; letter-spacing: 2px; color: #f5c542; text-shadow: 0 0 18px rgba(245,197,66,.55); }
+#round-banner { font-size: 15px; font-weight: 700; color: #cfe3ff; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 20px; padding: 6px 16px; }
+.top-actions button {
+  background: rgba(255,255,255,.08); color: #f2ead8; border: 1px solid rgba(255,255,255,.2);
+  border-radius: 8px; padding: 7px 12px; font-size: 13px; font-weight: 700; cursor: pointer; margin-left: 8px;
+}
+.top-actions button:hover { background: rgba(255,255,255,.16); }
+/* ---- fighter rows ---- */
+#opponent-row, #player-row { display: flex; align-items: center; gap: 16px; height: 148px; }
+.avatar {
+  width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 19px; font-weight: 900; letter-spacing: 1px; flex: none;
+  border: 3px solid rgba(255,255,255,.35);
+}
+.ai-avatar { background: radial-gradient(circle at 35% 30%, #7b2fbe, #3d1657); color: #e8d5ff; }
+.you-avatar { background: radial-gradient(circle at 35% 30%, #f5a623, #8a5a00); color: #fff3d6; }
+.fighter-info { width: 300px; flex: none; }
+.fighter-name { font-size: 17px; font-weight: 800; margin-bottom: 6px; white-space: nowrap; }
+.life-wrap { display: flex; align-items: center; gap: 8px; }
+.life-label { font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #9fb4d8; }
+.life-bar { flex: 1; height: 16px; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.25); border-radius: 9px; overflow: hidden; }
+.life-fill { height: 100%; width: 100%; transition: width .5s ease; }
+.life-fill.you { background: linear-gradient(90deg, #f5a623, #ffd76a); }
+.life-fill.ai { background: linear-gradient(90deg, #9b5de5, #c79bff); }
+.life-num { font-size: 20px; font-weight: 900; width: 34px; text-align: right; }
+.oil-line { font-size: 15px; margin-top: 5px; color: #ffd76a; letter-spacing: 2px; }
+/* ---- hands & cards ---- */
+.hand { display: flex; gap: 10px; flex: 1; align-items: center; }
+.card {
+  width: 104px; height: 140px; border-radius: 12px; padding: 8px 8px 6px;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  cursor: pointer; position: relative; user-select: none;
+  border: 2px solid rgba(255,255,255,.35);
+  box-shadow: 0 6px 16px rgba(0,0,0,.55), inset 0 0 0 2px rgba(255,255,255,.08);
+  transition: transform .18s ease, box-shadow .18s ease;
+  background: linear-gradient(165deg, #1b2347 0%, #121838 100%);
+}
+.card .value { font-size: 44px; font-weight: 900; line-height: 1; }
+.card .glyph { font-size: 26px; }
+.card .cname { font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+.card .cost { font-size: 13px; font-weight: 700; color: #ffd76a; }
+.card.amber { border-color: #f5a623; } .card.amber .value, .card.amber .cname { color: #ffc93c; }
+.card.teal { border-color: #2ec4b6; } .card.teal .value, .card.teal .cname { color: #4de3d3; }
+.card.violet { border-color: #9b5de5; } .card.violet .value, .card.violet .cname { color: #c79bff; }
+.you-hand .card:hover { transform: translateY(-14px) scale(1.05); box-shadow: 0 14px 26px rgba(0,0,0,.7), 0 0 0 2px #f5c542; }
+.card.free::after {
+  content: "FREE"; position: absolute; top: -9px; right: -6px; background: #2ec4b6; color: #06231f;
+  font-size: 10px; font-weight: 900; padding: 2px 7px; border-radius: 8px;
+}
+.card.unaffordable { opacity: .45; }
+.card.unaffordable:hover { transform: none; box-shadow: 0 6px 16px rgba(0,0,0,.55); }
+.card.back {
+  background: repeating-linear-gradient(45deg, #1a1440 0 10px, #241b52 10px 20px);
+  justify-content: center; cursor: default; border-color: rgba(185, 168, 232, 0.6);
+}
+.card.back .glyph { font-size: 34px; }
+.card.back .cname { color: #b9a8e8; }
+.card.played { width: 126px; height: 168px; cursor: default; }
+.card.played:hover { transform: none; }
+@keyframes slideIn { from { transform: translateY(46px) scale(.85); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+.card.slide-in { animation: slideIn .35s ease; }
+@keyframes flipIn { from { transform: rotateY(90deg); opacity: .2; } to { transform: rotateY(0); opacity: 1; } }
+.card.flip-in { animation: flipIn .45s ease; }
+@keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-7px); } 75% { transform: translateX(7px); } }
+.card.shake { animation: shake .3s ease; }
+/* ---- omen ---- */
+.omen-box {
+  width: 250px; flex: none; background: rgba(155,93,229,.14); border: 1px solid rgba(155,93,229,.55);
+  border-radius: 12px; padding: 10px 12px;
+}
+.omen-title { font-size: 12px; font-weight: 900; letter-spacing: 1px; color: #d9b8ff; }
+.omen-text { font-size: 15px; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+.omen-text .t-amber { color: #ffc93c; } .omen-text .t-teal { color: #4de3d3; } .omen-text .t-violet { color: #c79bff; }
+/* ---- clash zone ---- */
+#clash-zone { display: flex; align-items: center; justify-content: center; gap: 34px; height: 196px; }
+.played-slot {
+  width: 140px; height: 182px; border: 2px dashed rgba(255,255,255,.28); border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.slot-hint { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.45); text-align: center; padding: 0 8px; }
+#clash-mid { width: 300px; text-align: center; }
+#vs-badge {
+  width: 64px; height: 64px; margin: 0 auto 8px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f5c542, #b97e0e); color: #241a00;
+  font-size: 26px; font-weight: 900; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 26px rgba(245,197,66,.5);
+}
+.power-line { font-size: 19px; font-weight: 900; min-height: 26px; }
+.round-result { font-size: 16px; font-weight: 800; min-height: 44px; line-height: 1.35; margin-top: 4px; }
+.round-result.win { color: #ffd76a; } .round-result.lose { color: #ff9d9d; } .round-result.tie { color: #cfe3ff; }
+.combo-badge {
+  display: inline-block; background: #f5c542; color: #241a00; font-size: 12px; font-weight: 900;
+  border-radius: 8px; padding: 2px 8px; margin: 2px 2px 0;
+}
+/* ---- combo row ---- */
+#combo-row { display: flex; align-items: center; gap: 10px; height: 40px; }
+.combo-title { font-size: 13px; font-weight: 900; letter-spacing: 2px; color: #f5c542; flex: none; }
+.combo-chip {
+  font-size: 13px; font-weight: 700; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16);
+  border-radius: 16px; padding: 5px 12px; color: #d7def0;
+}
+.combo-chip.lit { background: rgba(245,197,66,.25); border-color: #f5c542; color: #ffd76a; }
+.tide-trail { display: flex; gap: 6px; margin-left: auto; }
+.tide-dot { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(255,255,255,.4); }
+.tide-dot.amber { background: #f5a623; } .tide-dot.teal { background: #2ec4b6; } .tide-dot.violet { background: #9b5de5; }
+/* ---- log ---- */
+#log-line { font-size: 14px; color: #9fb4d8; text-align: center; padding: 6px 0 2px; min-height: 26px; }
+/* ---- overlays ---- */
+.overlay {
+  position: absolute; inset: 0; background: rgba(4, 7, 18, 0.86); backdrop-filter: blur(2px);
+  display: flex; align-items: center; justify-content: center; z-index: 20;
+}
+.overlay.hidden { display: none; }
+.panel {
+  width: 860px; max-height: 660px; background: linear-gradient(170deg, #141b3d, #0c1128);
+  border: 2px solid rgba(245,197,66,.55); border-radius: 20px; padding: 30px 36px; text-align: center;
+  box-shadow: 0 24px 70px rgba(0,0,0,.8);
+}
+.title-kicker { font-size: 14px; font-weight: 800; letter-spacing: 3px; color: #4de3d3; }
+.title-panel h1 { font-size: 56px; font-weight: 900; letter-spacing: 3px; color: #f5c542; margin: 8px 0 2px; text-shadow: 0 0 26px rgba(245,197,66,.5); }
+.title-sub { font-size: 21px; font-weight: 700; color: #cfe3ff; margin-bottom: 14px; }
+.title-rules { font-size: 16px; line-height: 1.55; color: #e8e2cf; max-width: 720px; margin: 0 auto 14px; }
+.title-how { text-align: left; font-size: 14.5px; line-height: 1.6; background: rgba(255,255,255,.05); border-radius: 12px; padding: 12px 18px; margin-bottom: 18px; }
+.title-how div { margin: 3px 0; }
+.big-btn {
+  background: linear-gradient(180deg, #ffd76a, #f5a623); color: #241a00; border: none; border-radius: 14px;
+  font-size: 22px; font-weight: 900; letter-spacing: 1px; padding: 14px 38px; cursor: pointer;
+  box-shadow: 0 8px 24px rgba(245,166,35,.45);
+}
+.big-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.title-foot { font-size: 13px; color: #9fb4d8; margin-top: 14px; }
+.end-panel h1 { font-size: 46px; font-weight: 900; letter-spacing: 2px; margin-bottom: 8px; }
+.end-panel h1.win { color: #ffd76a; text-shadow: 0 0 26px rgba(245,197,66,.6); }
+.end-panel h1.lose { color: #c79bff; text-shadow: 0 0 26px rgba(155,93,229,.6); }
+.end-sub { font-size: 17px; color: #d7def0; margin-bottom: 16px; }
+.end-stats { display: flex; justify-content: center; gap: 14px; margin-bottom: 22px; flex-wrap: wrap; }
+.stat-box { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16); border-radius: 12px; padding: 10px 16px; min-width: 120px; }
+.stat-box .stat-num { font-size: 28px; font-weight: 900; color: #ffd76a; }
+.stat-box .stat-label { font-size: 12px; font-weight: 700; color: #9fb4d8; letter-spacing: 1px; text-transform: uppercase; }
+/* confetti */
+.confetti { position: absolute; top: -12px; width: 10px; height: 16px; z-index: 30; animation: fall linear forwards; pointer-events: none; }
+@keyframes fall { to { transform: translateY(740px) rotate(720deg); opacity: .7; } }

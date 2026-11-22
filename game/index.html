@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Starfall Harbor — a lantern-card duel. 36 cards, 3 tides, 5 combos. Read the Omen, chain combos, sink Vey's 20 light.">
+<title>Starfall Harbor — Duel of the Nine Lanterns</title>
+<link rel="stylesheet" href="css/table.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">★ STARFALL HARBOR</div>
+    <div id="round-banner">ROUND 1 · First to sink the rival's 20 light wins</div>
+    <div class="top-actions">
+      <button id="sound-btn" type="button">🔊 Sound on</button>
+      <button id="restart-btn" type="button">↻ Restart</button>
+    </div>
+  </header>
+
+  <section id="opponent-row" aria-label="Opponent">
+    <div class="avatar ai-avatar">VEY</div>
+    <div class="fighter-info">
+      <div class="fighter-name">Vey — Captain of the Drowned Fleet</div>
+      <div class="life-wrap"><div class="life-label">LIGHT</div><div class="life-bar"><div id="ai-life-fill" class="life-fill ai"></div></div><div id="ai-life-num" class="life-num">20</div></div>
+      <div id="ai-oil" class="oil-line">Oil ●●●○○</div>
+    </div>
+    <div id="ai-hand" class="hand ai-hand"></div>
+    <div id="omen-box" class="omen-box">
+      <div class="omen-title">⚠ OMEN — Vey's next tide</div>
+      <div id="omen-text" class="omen-text">—</div>
+    </div>
+  </section>
+
+  <section id="clash-zone" aria-label="Clash zone">
+    <div id="you-played" class="played-slot"><div class="slot-hint">Your card</div></div>
+    <div id="clash-mid">
+      <div id="vs-badge">VS</div>
+      <div id="power-line" class="power-line"></div>
+      <div id="round-result" class="round-result"></div>
+    </div>
+    <div id="ai-played" class="played-slot"><div class="slot-hint">Vey's card</div></div>
+  </section>
+
+  <section id="combo-row" aria-label="Combos">
+    <div class="combo-title">COMBOS</div>
+    <div id="combo-twin" class="combo-chip">🔥 Twin Lights · same tide twice +2</div>
+    <div id="combo-spectrum" class="combo-chip">🌈 Full Spectrum · 3 tides in a row +4, heal 2</div>
+    <div id="combo-tide" class="combo-chip">🌊 High Tide · value 10+ gives +1 oil</div>
+    <div id="tide-trail" class="tide-trail" title="Your last tides"></div>
+  </section>
+
+  <section id="player-row" aria-label="Your hand">
+    <div class="avatar you-avatar">RIN</div>
+    <div class="fighter-info">
+      <div class="fighter-name">Rin — Keeper of the Harbor Light</div>
+      <div class="life-wrap"><div class="life-label">LIGHT</div><div class="life-bar"><div id="you-life-fill" class="life-fill you"></div></div><div id="you-life-num" class="life-num">20</div></div>
+      <div id="you-oil" class="oil-line">Oil ●●●○○</div>
+    </div>
+    <div id="you-hand" class="hand you-hand"></div>
+  </section>
+
+  <footer id="log-line">Welcome to Starfall Harbor. 36 lantern cards · 3 tides · 5 combos · sink Vey's 20 light.</footer>
+
+  <div id="title-screen" class="overlay">
+    <div class="panel title-panel">
+      <div class="title-kicker">A LANTERN-CARD DUEL · 36 CARDS · 3 TIDES · 5 COMBOS</div>
+      <h1>★ STARFALL HARBOR ★</h1>
+      <div class="title-sub">Duel of the Nine Lanterns</div>
+      <p class="title-rules">
+        You are <b>Rin</b>, Keeper of the Harbor Light. Across the table sits <b>Vey</b>,
+        Captain of the Drowned Fleet. Each round you both play one lantern card.
+        Higher power wins the tide and sinks the rival's light. First to sink all
+        <b>20 light</b> takes the harbor.
+      </p>
+      <div class="title-how">
+        <div><b>☀ Amber &gt; 🌊 Teal &gt; ☾ Violet &gt; ☀ Amber</b> — a winning tide is +3 power.</div>
+        <div><b>Oil</b> pays for cards (1–3). It refills +1 every round. Broke? The harbor lends your cheapest card free.</div>
+        <div><b>Combos:</b> Twin Lights +2 · Full Spectrum +4 &amp; heal 2 · High Tide +1 oil.</div>
+        <div><b>Read the Omen:</b> Vey telegraphs the tide he favors — 3 times in 4 it is true. Counter it.</div>
+      </div>
+      <button id="start-btn" type="button" class="big-btn">⚓ START THE DUEL</button>
+      <div class="title-foot">Click a card or press 1–5 to play · 20 light each · No luck without a plan</div>
+    </div>
+  </div>
+
+  <div id="end-screen" class="overlay hidden">
+    <div class="panel end-panel">
+      <h1 id="end-title">THE HARBOR IS YOURS</h1>
+      <p id="end-sub" class="end-sub"></p>
+      <div id="end-stats" class="end-stats"></div>
+      <button id="again-btn" type="button" class="big-btn">⚓ DUEL AGAIN</button>
+    </div>
+  </div>
+</div>
+<script src="js/deck.js"></script>
+<script src="js/rules.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/render.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
